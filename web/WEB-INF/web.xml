@@ -13,8 +13,16 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>org.sav.servlet.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AjaxServlet</servlet-name>
+        <servlet-class>org.sav.servlet.AjaxServlet</servlet-class>
+    </servlet>
 
 
+    <servlet-mapping>
+        <servlet-name>AjaxServlet</servlet-name>
+        <url-pattern>AjaxServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>LogoutServlet</url-pattern>

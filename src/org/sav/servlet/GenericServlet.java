@@ -1,5 +1,7 @@
 package org.sav.servlet;
 
+import org.sav.service.AjaxResult;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,4 +25,7 @@ abstract public class GenericServlet extends HttpServlet{
         dispatcher.forward(aRequest, aResponse);
     }
 
+    public void processResult(AjaxResult result, HttpServletRequest request, HttpServletResponse response) {
+
+    }
 }

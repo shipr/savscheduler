@@ -1,0 +1,1 @@
+alert('Ajax fail! Service <%=request.getParameter("service")%>.<%=request.getParameter("action")%>()');
