@@ -21,7 +21,8 @@
                 data: "service=EmployeeService&action=getAll"
             }).done( function(msg) {
                         var res = eval(msg);
-
+                        alert(res);
+                        updateEmployeesTable(res)
                         //alert( "Employee.getAll(): " +  );
                     }).fail( function( xmlHttpRequest, statusText, errorThrown ) {
                         alert("Your form submission failed.\n\n"
@@ -30,10 +31,16 @@
                                         + ",\nError Thrown: " + errorThrown );
                     });
         }
+        function updateEmployeesTable(res){
+            employeesFrame = $('#employeesFrame');
+
+        }
 
     </script>
 
     <a href="LogoutServlet">Logout</a>
+    <br>
+    <a onclick="loadEmployees()" href="#">loadEmployees</a>
 
 </body>
 </html>

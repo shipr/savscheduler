@@ -18,6 +18,6 @@ public class ServiceFactory{
 
 
     public AjaxService getService(String service) {
-        return null;
+        return serviceMap.get(service);
     }
 }

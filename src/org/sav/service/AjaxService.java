@@ -4,6 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface AjaxService{
 
-    AjaxResult invokeAction(String action, HttpServletRequest request);
+    Object invokeAction(String action, HttpServletRequest request);
 
 }

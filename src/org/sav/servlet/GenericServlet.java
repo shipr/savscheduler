@@ -1,6 +1,6 @@
 package org.sav.servlet;
 
-import org.sav.service.AjaxResult;
+import com.google.gson.Gson;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +25,8 @@ abstract public class GenericServlet extends HttpServlet{
         dispatcher.forward(aRequest, aResponse);
     }
 
-    public void processResult(AjaxResult result, HttpServletRequest request, HttpServletResponse response) {
-
+    public void processResult(Object result, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Gson gson = new Gson();
+        gson.toJson(result, response.getWriter());
     }
 }

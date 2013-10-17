@@ -30,7 +30,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
@@ -39,7 +39,17 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="AppEngine API" level="project" />
     <orderEntry type="library" name="AppEngine ORM" level="project" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="Lib folder" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library name="libRuntime">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/libruntime" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/libruntime" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>
 
