@@ -17,8 +17,27 @@
         <servlet-name>AjaxServlet</servlet-name>
         <servlet-class>org.sav.servlet.AjaxServlet</servlet-class>
     </servlet>
-
-
+    <servlet>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>org.sav.service</param-value>
+        </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.config.feature.DisableWADL</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/restful/*</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AjaxServlet</servlet-name>
         <url-pattern>AjaxServlet</url-pattern>
@@ -38,5 +57,5 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
-    
+
 </web-app>

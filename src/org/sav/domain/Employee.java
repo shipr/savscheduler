@@ -3,17 +3,17 @@ package org.sav.domain;
 import java.util.Set;
 
 public class Employee{
-    private long id;
+    private long employeeId;
     private String name;
     private String lastName;
     private Set<Position> positions;
 
-    public long getId() {
-        return id;
+    public long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getName() {
