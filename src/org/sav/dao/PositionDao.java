@@ -23,7 +23,7 @@ public class PositionDao{
 
     public Position create(String name) {
         Position position = new Position();
-        position.setName(name);
+        position.setPositionName(name);
         sessionFactory.getCurrentSession().persist(position);
         return position;
     }
@@ -31,7 +31,7 @@ public class PositionDao{
     public void update(long positionId, String name) {
         Session session = sessionFactory.getCurrentSession();
         Position position = (Position)session.get(Position.class, positionId);
-        position.setName(name);
+        position.setPositionName(name);
         session.update(position);
     }
 

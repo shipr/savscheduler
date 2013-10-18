@@ -42,12 +42,19 @@
                         title: 'LastName',
                         width: '40%'
                     },
-                    positions: {
+                    positionName: {
                         title: 'Positions',
                         width: '40%',
-                        type: 'date',
-                        create: false,
-                        edit: false
+                        options: function (data) {
+                            return '/restful/Position/getAllOptions';
+                        },
+                        input: function (data){
+                            if (data.record) {
+                                return '<input type="text" name="positions" style="width:200px" value="' + data.record.positions+ '" />';
+                            } else {
+                                return '<input type="text" name="positions" style="width:200px" value="" />';
+                            }
+                        }
                     }
                 }
             });
@@ -63,11 +70,11 @@
                     deleteAction: '/restful/Position/delete'
                 },
                 fields: {
-                    employeeId: {
+                    positionId: {
                         key: true,
                         list: false
                     },
-                    name: {
+                    positionName: {
                         title: 'Name',
                         width: '100%'
                     }

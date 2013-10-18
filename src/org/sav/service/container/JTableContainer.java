@@ -1,20 +1,26 @@
 package org.sav.service.container;
 
-import java.util.List;
+import org.sav.domain.Option;
+
+import java.util.Collection;
 
 public class JTableContainer{
     public String Result;
-    public List Records;
+    public Collection Records;
     public Object Record;
+    public Option[] Options;
 
-    public JTableContainer(String result, List records) {
+    public JTableContainer(String result, Collection records) {
         Result = result;
         Records = records;
     }
+    public JTableContainer(Object record) {
+        Result = "OK";
+        this.Record = record;
+    }
 
-    public JTableContainer(String result, Object record) {
-        Result = result;
-        Record = record;
+    public JTableContainer() {
+        Result = "OK";
     }
 
 }

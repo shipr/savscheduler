@@ -27,8 +27,7 @@ public class EmployeeService{
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAll")
     public JTableContainer getAll() {
-        JTableContainer containerColleaction = new JTableContainer("OK", employeeDao.getAll());
-        return containerColleaction;
+        return new JTableContainer("OK", employeeDao.getAll());
     }
 
     @POST
@@ -37,7 +36,7 @@ public class EmployeeService{
     @Path("/create")
     public JTableContainer create(@FormParam("name")String name, @FormParam("lastName") String lastName){
         Employee employee = employeeDao.createEmployee(name, lastName);
-        return new JTableContainer("OK", employee);
+        return new JTableContainer(employee);
     }
 
     @POST
@@ -45,9 +44,22 @@ public class EmployeeService{
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/update")
     public JTableContainer update(@FormParam("employeeId")long employeeId, @FormParam("name")String name,
-                                                @FormParam("lastName") String lastName){
-        employeeDao.updateEmployee(employeeId, name, lastName);
-        return new JTableContainer("OK", null);
+                                                @FormParam("lastName") String lastName,
+                                                @FormParam("positions") String positions){
+        Employee employee = employeeDao.getEmployee(employeeId);
+        employee.setName(name);
+        employee.setLastName(lastName);
+        employee.getPositions().clear();
+        if(positions != null && !positions.isEmpty()){
+            for (String s : positions.split("\\,")) {
+                long pos = Long.parseLong(s);
+                if(pos != 0){
+                    employee.getPositions().add(pos);
+                }
+            }
+        }
+        employeeDao.updateEmployee(employee);
+        return new JTableContainer();
     }
 
     @POST
@@ -56,8 +68,7 @@ public class EmployeeService{
     @Path("/delete")
     public JTableContainer delete(@FormParam("employeeId")long employeeId){
         employeeDao.deleteEmployee(employeeId);
-        JTableContainer containerColleaction = new JTableContainer("OK", null);
-        return containerColleaction;
+        return new JTableContainer();
     }
 
 }

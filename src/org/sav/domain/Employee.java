@@ -1,8 +1,16 @@
 package org.sav.domain;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
@@ -18,8 +26,10 @@ public class Employee{
     private String name;
     @Column(name = "last_name")
     private String lastName;
-    @Transient
-    private Set<Position> positions;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    private Set<Long> positions;
 
     public long getEmployeeId() {
         return employeeId;
@@ -45,11 +55,11 @@ public class Employee{
         this.lastName = lastName;
     }
 
-    public Set<Position> getPositions() {
+    public Set<Long> getPositions() {
         return positions;
     }
 
-    public void setPositions(Set<Position> positions) {
+    public void setPositions(Set<Long> positions) {
         this.positions = positions;
     }
 }

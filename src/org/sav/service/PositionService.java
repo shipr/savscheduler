@@ -1,8 +1,8 @@
 package org.sav.service;
 
 import org.sav.dao.PositionDao;
-import org.sav.domain.Employee;
 import org.sav.service.container.JTableContainer;
+import org.sav.util.OptionConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,22 +30,28 @@ public class PositionService{
         JTableContainer containerColleaction = new JTableContainer("OK", positionDao.getAll());
         return containerColleaction;
     }
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/getAllOptions")
+    public JTableContainer getAllOptions() {
+        return OptionConverter.convertToOption(positionDao.getAll());
+    }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/create")
     public JTableContainer create(@FormParam("name")String name){
-        return new JTableContainer("OK", positionDao.create(name));
+        return new JTableContainer(positionDao.create(name));
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/update")
-    public JTableContainer update(@FormParam("positionId")long positionId, @FormParam("name")String name){
+    public JTableContainer update(@FormParam("positionId")long positionId, @FormParam("positionName")String name){
         positionDao.update(positionId, name);
-        return new JTableContainer("OK", null);
+        return new JTableContainer();
     }
 
     @POST
@@ -54,8 +60,7 @@ public class PositionService{
     @Path("/delete")
     public JTableContainer delete(@FormParam("positionId")long positionId){
         positionDao.delete(positionId);
-        JTableContainer containerColleaction = new JTableContainer("OK", null);
-        return containerColleaction;
+        return new JTableContainer();
     }
 
 

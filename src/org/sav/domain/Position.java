@@ -17,8 +17,8 @@ public class Position{
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
     private long positionId;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "position_name")
+    private String positionName;
 
     public long getPositionId() {
         return positionId;
@@ -28,11 +28,11 @@ public class Position{
         this.positionId = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPositionName() {
+        return positionName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPositionName(String name) {
+        this.positionName = name;
     }
 }

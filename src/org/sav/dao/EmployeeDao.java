@@ -28,18 +28,22 @@ public class EmployeeDao{
         return employee;
     }
 
-    public void updateEmployee(long employeeId, String name, String lastName) {
+    public void updateEmployee(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
-        Employee employee = (Employee)session.get(Employee.class, employeeId);
-        employee.setName(name);
-        employee.setLastName(lastName);
         session.update(employee);
+    }
 
+    public Employee getEmployee(long employeeId) {
+        return getEmployee(employeeId, sessionFactory.getCurrentSession());
+    }
+
+    private Employee getEmployee(long employeeId, Session session) {
+        return (Employee)session.get(Employee.class, employeeId);
     }
 
     public void deleteEmployee(long employeeId) {
-        Session session = sessionFactory.getCurrentSession();
-        Employee employee = (Employee)session.get(Employee.class, employeeId);
+            Session session = sessionFactory.getCurrentSession();
+        Employee employee = getEmployee(employeeId, session);
         session.delete(employee);
-    }
+        }
 }
