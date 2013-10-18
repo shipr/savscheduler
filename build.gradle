@@ -1,0 +1,48 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+
+sourceCompatibility = 1.6
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'web'
+        }
+    }
+}
+
+dependencies {
+    providedCompile "javax.servlet:servlet-api:2.5"
+
+    compile 'com.sun.jersey:jersey-bundle:1.17.1'
+    compile 'com.sun.jersey:jersey-json:1.17.1'
+    compile 'javax.ws.rs:jsr311-api:0.11'
+    compile 'com.google.code.gson:gson:2.2.4'
+
+    compile 'asm:asm:3.3.1'
+    compile 'org.springframework:spring-web:3.2.4.RELEASE'
+
+    compile 'org.hibernate:hibernate-core:3.6.9.Final'
+}
+
+war {
+    from 'src' // adds a file-set to the root of the archive
+    webInf { from 'web/WEB-INF' } // adds a file-set to the WEB-INF dir.
+//    classpath fileTree('libruntime') // adds a file-set to the WEB-INF/lib dir.
+    webXml = file('web/WEB-INF/web.xml') // copies a file to WEB-INF/web.xml
+}
+
+jettyRun.webAppSourceDirectory=file('web')
+
+httpPort = 8080
+stopPort = 9451
+stopKey = 'foo'

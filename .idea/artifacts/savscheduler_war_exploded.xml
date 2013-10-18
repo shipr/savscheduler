@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="savscheduler:war exploded">
+  <artifact type="exploded-war" build-on-make="true" name="savscheduler:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/savscheduler_war_exploded</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="savscheduler/web/Web" />
@@ -10,7 +10,36 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="AppEngine API" />
           <element id="library" level="project" name="AppEngine ORM" />
-          <element id="library" level="module" name="libRuntime" module-name="savscheduler" />
+          <element id="library" level="project" name="antlr-2.7.6" />
+          <element id="library" level="project" name="aopalliance-1.0" />
+          <element id="library" level="project" name="commons-collections-3.1" />
+          <element id="library" level="project" name="commons-logging-1.1.1" />
+          <element id="library" level="project" name="dom4j-1.6.1" />
+          <element id="library" level="project" name="gson-2.2.4" />
+          <element id="library" level="project" name="hibernate-commons-annotations-3.2.0.Final" />
+          <element id="library" level="project" name="hibernate-core-3.6.9.Final" />
+          <element id="library" level="project" name="hibernate-jpa-2.0-api-1.0.1.Final" />
+          <element id="library" level="project" name="jersey-bundle-1.17.1" />
+          <element id="library" level="project" name="jsr311-api-1.1.1" />
+          <element id="library" level="project" name="jta-1.1" />
+          <element id="library" level="project" name="slf4j-api-1.6.1" />
+          <element id="library" level="project" name="spring-aop-3.2.4.RELEASE" />
+          <element id="library" level="project" name="spring-beans-3.2.4.RELEASE" />
+          <element id="library" level="project" name="spring-context-3.2.4.RELEASE" />
+          <element id="library" level="project" name="spring-core-3.2.4.RELEASE" />
+          <element id="library" level="project" name="spring-expression-3.2.4.RELEASE" />
+          <element id="library" level="project" name="spring-web-3.2.4.RELEASE" />
+          <element id="library" level="project" name="asm-3.3.1" />
+          <element id="library" level="project" name="activation-1.1" />
+          <element id="library" level="project" name="jackson-core-asl-1.9.2" />
+          <element id="library" level="project" name="jackson-jaxrs-1.9.2" />
+          <element id="library" level="project" name="jackson-mapper-asl-1.9.2" />
+          <element id="library" level="project" name="jackson-xc-1.9.2" />
+          <element id="library" level="project" name="jaxb-api-2.2.2" />
+          <element id="library" level="project" name="jaxb-impl-2.2.3-1" />
+          <element id="library" level="project" name="jersey-json-1.17.1" />
+          <element id="library" level="project" name="jettison-1.1" />
+          <element id="library" level="project" name="stax-api-1.0-2" />
         </element>
       </element>
     </root>
