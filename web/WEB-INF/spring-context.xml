@@ -18,6 +18,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>org.sav.domain.Employee</value>
+                <value>org.sav.domain.Position</value>
             </list>
         </property>
         <property name="hibernateProperties">

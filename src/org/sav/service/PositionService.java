@@ -1,6 +1,6 @@
 package org.sav.service;
 
-import org.sav.dao.EmployeeDao;
+import org.sav.dao.PositionDao;
 import org.sav.domain.Employee;
 import org.sav.service.container.JTableContainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +15,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/Employee")
+@Path("/Position")
 @Component
 @Transactional(propagation = Propagation.REQUIRED)
-public class EmployeeService{
+public class PositionService{
 
     @Autowired
-    private EmployeeDao employeeDao;
+    private PositionDao positionDao;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAll")
     public JTableContainer getAll() {
-        JTableContainer containerColleaction = new JTableContainer("OK", employeeDao.getAll());
+        JTableContainer containerColleaction = new JTableContainer("OK", positionDao.getAll());
         return containerColleaction;
     }
 
@@ -35,18 +35,16 @@ public class EmployeeService{
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/create")
-    public JTableContainer create(@FormParam("name")String name, @FormParam("lastName") String lastName){
-        Employee employee = employeeDao.createEmployee(name, lastName);
-        return new JTableContainer("OK", employee);
+    public JTableContainer create(@FormParam("name")String name){
+        return new JTableContainer("OK", positionDao.create(name));
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/update")
-    public JTableContainer update(@FormParam("employeeId")long employeeId, @FormParam("name")String name,
-                                                @FormParam("lastName") String lastName){
-        employeeDao.updateEmployee(employeeId, name, lastName);
+    public JTableContainer update(@FormParam("positionId")long positionId, @FormParam("name")String name){
+        positionDao.update(positionId, name);
         return new JTableContainer("OK", null);
     }
 
@@ -54,10 +52,12 @@ public class EmployeeService{
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/delete")
-    public JTableContainer delete(@FormParam("employeeId")long employeeId){
-        employeeDao.deleteEmployee(employeeId);
+    public JTableContainer delete(@FormParam("positionId")long positionId){
+        positionDao.delete(positionId);
         JTableContainer containerColleaction = new JTableContainer("OK", null);
         return containerColleaction;
     }
+
+
 
 }

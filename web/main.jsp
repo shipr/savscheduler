@@ -10,11 +10,14 @@
 <body>
     <div id="employeesContainer" style="width: 100%;"></div>
 
+    <div id="positionsContainer" style="width: 100%;"></div>
+
 
 
     <script>
         $(document).ready(function () {
             createEmployeesTable()
+            createPositionsTable()
         });
 
         function createEmployeesTable() {
@@ -22,9 +25,9 @@
                 title: 'Table of employees',
                 actions: {
                     listAction: '/restful/Employee/getAll',
-                    createAction: '/restful/Employee/createEmployee',
-                    updateAction: '/restful/Employee/updateEmployee',
-                    deleteAction: '/restful/Employee/deleteEmployee'
+                    createAction: '/restful/Employee/create',
+                    updateAction: '/restful/Employee/update',
+                    deleteAction: '/restful/Employee/delete'
                 },
                 fields: {
                     employeeId: {
@@ -50,7 +53,28 @@
             });
             $('#employeesContainer').jtable('load');
         }
-
+        function createPositionsTable() {
+            $('#positionsContainer').jtable({
+                title: 'Table of positions',
+                actions: {
+                    listAction: '/restful/Position/getAll',
+                    createAction: '/restful/Position/create',
+                    updateAction: '/restful/Position/update',
+                    deleteAction: '/restful/Position/delete'
+                },
+                fields: {
+                    employeeId: {
+                        key: true,
+                        list: false
+                    },
+                    name: {
+                        title: 'Name',
+                        width: '100%'
+                    }
+                }
+            });
+            $('#positionsContainer').jtable('load');
+        }
     </script>
 
     <br>
