@@ -8,8 +8,6 @@
           <element id="module-output" name="savscheduler" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="AppEngine API" />
-          <element id="library" level="project" name="AppEngine ORM" />
           <element id="library" level="project" name="antlr-2.7.6" />
           <element id="library" level="project" name="aopalliance-1.0" />
           <element id="library" level="project" name="commons-collections-3.1" />
@@ -21,7 +19,6 @@
           <element id="library" level="project" name="hibernate-jpa-2.0-api-1.0.1.Final" />
           <element id="library" level="project" name="jersey-bundle-1.17.1" />
           <element id="library" level="project" name="jsr311-api-1.1.1" />
-          <element id="library" level="project" name="jta-1.1" />
           <element id="library" level="project" name="slf4j-api-1.6.1" />
           <element id="library" level="project" name="spring-aop-3.2.4.RELEASE" />
           <element id="library" level="project" name="spring-beans-3.2.4.RELEASE" />
@@ -35,11 +32,19 @@
           <element id="library" level="project" name="jackson-jaxrs-1.9.2" />
           <element id="library" level="project" name="jackson-mapper-asl-1.9.2" />
           <element id="library" level="project" name="jackson-xc-1.9.2" />
-          <element id="library" level="project" name="jaxb-api-2.2.2" />
-          <element id="library" level="project" name="jaxb-impl-2.2.3-1" />
           <element id="library" level="project" name="jersey-json-1.17.1" />
           <element id="library" level="project" name="jettison-1.1" />
+          <element id="library" level="project" name="dbcp-6.0.37" />
+          <element id="library" level="project" name="hsqldb-2.3.1" />
+          <element id="library" level="project" name="spring-jdbc-3.2.4.RELEASE" />
+          <element id="library" level="project" name="spring-orm-3.2.4.RELEASE" />
+          <element id="library" level="project" name="spring-tx-3.2.4.RELEASE" />
+          <element id="library" level="project" name="jersey-spring-1.17.1" />
+          <element id="library" level="project" name="jaxb-api-2.2.2" />
+          <element id="library" level="project" name="jaxb-impl-2.2.3-1" />
+          <element id="library" level="project" name="jta-1.1" />
           <element id="library" level="project" name="stax-api-1.0-2" />
+          <element id="library" level="project" name="javassist-3.18.1-GA" />
         </element>
       </element>
     </root>

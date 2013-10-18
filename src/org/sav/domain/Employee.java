@@ -1,11 +1,24 @@
 package org.sav.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Set;
 
+@Entity
+@Table(name = "employee")
 public class Employee{
+
+    @Id
+    @Column(name = "employee_id")
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     private long employeeId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "last_name")
     private String lastName;
+    @Transient
     private Set<Position> positions;
 
     public long getEmployeeId() {

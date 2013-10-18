@@ -1,57 +1,45 @@
 package org.sav.dao;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.sav.domain.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+
+@Service
 public class EmployeeDao{
 
-    private static EmployeeDao instance = new EmployeeDao();
-    private long employeeId = 1;
-
-    private List<Employee> employees = new ArrayList<Employee>();
-
-    public EmployeeDao() {
-        createEmployee("John", "Smith");
-        createEmployee("Peter", "Feel");
-
-    }
-
-    public static EmployeeDao getInstance() {
-        return instance;
-    }
+    @Autowired
+    private SessionFactory sessionFactory;
 
     public List<Employee> getAll(){
-        return employees;
+        return sessionFactory.getCurrentSession().createCriteria(Employee.class).list();
     }
 
 
     public Employee createEmployee(String name, String lastName) {
         Employee employee = new Employee();
-        employee.setEmployeeId(employeeId++);
         employee.setName(name);
         employee.setLastName(lastName);
-        employees.add(employee);
+        sessionFactory.getCurrentSession().persist(employee);
         return employee;
     }
 
     public void updateEmployee(long employeeId, String name, String lastName) {
-        for (Employee employee : employees) {
-            if(employee.getEmployeeId() == employeeId){
-                employee.setName(name);
-                employee.setLastName(lastName);
-            }
-        }
+        Session session = sessionFactory.getCurrentSession();
+        Employee employee = (Employee)session.get(Employee.class, employeeId);
+        employee.setName(name);
+        employee.setLastName(lastName);
+        session.update(employee);
+
     }
 
     public void deleteEmployee(long employeeId) {
-        for(Iterator<Employee> it = employees.iterator();it.hasNext(); ){
-            Employee employee = it.next();
-            if(employee.getEmployeeId() == employeeId){
-                it.remove();
-            }
-        }
+        Session session = sessionFactory.getCurrentSession();
+        Employee employee = (Employee)session.get(Employee.class, employeeId);
+        session.delete(employee);
     }
 }

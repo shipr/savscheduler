@@ -1,7 +1,5 @@
 package org.sav.servlet;
 
-import com.google.gson.Gson;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,10 +21,5 @@ abstract public class GenericServlet extends HttpServlet{
     protected void forward(String page, HttpServletRequest aRequest, HttpServletResponse aResponse) throws ServletException, IOException {
         RequestDispatcher dispatcher = aRequest.getRequestDispatcher(page);
         dispatcher.forward(aRequest, aResponse);
-    }
-
-    public void processResult(Object result, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Gson gson = new Gson();
-        gson.toJson(result, response.getWriter());
     }
 }
