@@ -701,7 +701,15 @@ THE SOFTWARE.
 
             //if this is a custom field, call display function
             if (field.display) {
-                return field.display({ record: record });
+                if (field.options) { //combobox or radio button list since there are options.
+                    var options = this._getOptionsForField(fieldName, {
+                        record: record,
+                        value: fieldValue,
+                        source: 'list',
+                        dependedValues: this._createDependedValuesUsingRecord(record, field.dependsOn)
+                    });
+                }
+                return field.display({ record: record, value :  fieldValue, options : options});
             }
 
             if (field.type == 'date') {

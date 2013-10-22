@@ -75,8 +75,22 @@
                             } else {
                                 return '<input type="text" name="positions" style="width:200px" value="" />';
                             }
+                        },
+                        display: function(data){
+                            var ret = '';
+                            for(var i = 0 ; i < data.value.length; i++){
+                                var val = data.value[i];
+                                for(var ii = 0; ii < data.options.length; ii++){
+                                    var option = data.options[ii];
+                                    if(option.Value === val){
+                                        ret += option.DisplayText + ' ';
+                                        break;
+                                    }
+                                }
+                            };
+                            return ret;
+                            //return data.record + ' ' + data.value + ' ' +  data.options;
                         }
-
                     }
                 }
             });
