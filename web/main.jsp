@@ -78,13 +78,15 @@
                         },
                         display: function(data){
                             var ret = '';
-                            for(var i = 0 ; i < data.value.length; i++){
-                                var val = data.value[i];
-                                for(var ii = 0; ii < data.options.length; ii++){
-                                    var option = data.options[ii];
-                                    if(option.Value === val){
-                                        ret += option.DisplayText + ' ';
-                                        break;
+                            if(data.value){
+                                for(var i = 0 ; i < data.value.length; i++){
+                                    var val = data.value[i];
+                                    for(var ii = 0; ii < data.options.length; ii++){
+                                        var option = data.options[ii];
+                                        if(option.Value == val){
+                                            ret += option.DisplayText + ' ';
+                                            break;
+                                        }
                                     }
                                 }
                             };

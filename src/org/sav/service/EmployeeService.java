@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Map;
 
 @Path("/Employee")
 @Component
@@ -27,24 +28,24 @@ public class EmployeeService{
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAll")
-    public JTableContainer getAll() {
-        return new JTableContainer("OK", employeeDao.getAll());
+    public Map getAll() {
+        return JTableContainer.createRecords(employeeDao.getAll());
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/create")
-    public JTableContainer create(@FormParam("name")String name, @FormParam("lastName") String lastName){
+    public Map<String, Object> create(@FormParam("name")String name, @FormParam("lastName") String lastName){
         Employee employee = employeeDao.createEmployee(name, lastName);
-        return new JTableContainer(employee);
+        return JTableContainer.createRecord(employee);
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/update")
-    public JTableContainer update(@FormParam("employeeId")long employeeId, @FormParam("name")String name,
+    public Map<String, Object> update(@FormParam("employeeId")long employeeId, @FormParam("name")String name,
                                                 @FormParam("lastName") String lastName,
                                                 @FormParam("positions") List<Long> positions){
         Employee employee = employeeDao.getEmployee(employeeId);
@@ -59,16 +60,16 @@ public class EmployeeService{
             }
         }
         employeeDao.updateEmployee(employee);
-        return new JTableContainer();
+        return JTableContainer.createOK();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/delete")
-    public JTableContainer delete(@FormParam("employeeId")long employeeId){
+    public Map<String, Object> delete(@FormParam("employeeId")long employeeId){
         employeeDao.deleteEmployee(employeeId);
-        return new JTableContainer();
+        return JTableContainer.createOK();
     }
 
 }

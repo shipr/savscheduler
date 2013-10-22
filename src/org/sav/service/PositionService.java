@@ -2,7 +2,6 @@ package org.sav.service;
 
 import org.sav.dao.PositionDao;
 import org.sav.service.container.JTableContainer;
-import org.sav.util.OptionConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.Map;
 
 @Path("/Position")
 @Component
@@ -26,41 +26,40 @@ public class PositionService{
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAll")
-    public JTableContainer getAll() {
-        JTableContainer containerColleaction = new JTableContainer("OK", positionDao.getAll());
-        return containerColleaction;
+    public Map<String, Object> getAll() {
+        return JTableContainer.createRecords(positionDao.getAll());
     }
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAllOptions")
-    public JTableContainer getAllOptions() {
-        return OptionConverter.convertToOption(positionDao.getAll());
+    public Map<String, Object> getAllOptions() {
+        return JTableContainer.createOptions(positionDao.getAll());
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/create")
-    public JTableContainer create(@FormParam("name")String name){
-        return new JTableContainer(positionDao.create(name));
+    public Map<String, Object> create(@FormParam("positionName")String name){
+        return JTableContainer.createRecord(positionDao.create(name));
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/update")
-    public JTableContainer update(@FormParam("positionId")long positionId, @FormParam("positionName")String name){
+    public Map<String, Object> update(@FormParam("positionId")long positionId, @FormParam("positionName")String name){
         positionDao.update(positionId, name);
-        return new JTableContainer();
+        return JTableContainer.createOK();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/delete")
-    public JTableContainer delete(@FormParam("positionId")long positionId){
+    public Map<String, Object> delete(@FormParam("positionId")long positionId){
         positionDao.delete(positionId);
-        return new JTableContainer();
+        return JTableContainer.createOK();
     }
 
 
