@@ -2,10 +2,10 @@
 <html>
 <head>
     <title>Main Page</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
     <link href="/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
-    <script src="/jtable/jquery.jtable.min.js"></script>
+    <script src="/jtable/jquery.jtable.js"></script>
 </head>
 <body>
     <div id="employeesContainer" style="width: 100%;"></div>
@@ -42,19 +42,41 @@
                         title: 'LastName',
                         width: '40%'
                     },
-                    positionName: {
+                    positions: {
                         title: 'Positions',
                         width: '40%',
                         options: function (data) {
                             return '/restful/Position/getAllOptions';
                         },
-                        input: function (data){
+                        input: function (data, options){
                             if (data.record) {
-                                return '<input type="text" name="positions" style="width:200px" value="' + data.record.positions+ '" />';
+
+                                var select = $('<select multiple name="positions" id="show_results" />');
+
+                                containsInArray = function(arrayObj, valueObj){
+                                    if(typeof arrayObj === 'string' || typeof arrayObj === 'number'){
+                                        return arrayObj == valueObj;
+                                    } else {
+                                        for (var i = 0; i < arrayObj.length; i++) {
+                                            if(arrayObj[i] == valueObj){
+                                                return true;
+                                            }
+                                        }
+                                        return false;
+                                    }
+
+                                }
+                                select.append($("<option />").text('').val(0).prop("selected", "selected"));
+
+                                $.each(options, function () {
+                                    select.append($("<option />").text(this.DisplayText).val(this.Value).prop("selected", containsInArray(data.value, this.Value) ? "selected" : null));
+                                });
+                                return select
                             } else {
                                 return '<input type="text" name="positions" style="width:200px" value="" />';
                             }
                         }
+
                     }
                 }
             });

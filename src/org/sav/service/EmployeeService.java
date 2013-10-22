@@ -14,6 +14,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/Employee")
 @Component
@@ -45,16 +46,15 @@ public class EmployeeService{
     @Path("/update")
     public JTableContainer update(@FormParam("employeeId")long employeeId, @FormParam("name")String name,
                                                 @FormParam("lastName") String lastName,
-                                                @FormParam("positions") String positions){
+                                                @FormParam("positions") List<Long> positions){
         Employee employee = employeeDao.getEmployee(employeeId);
         employee.setName(name);
         employee.setLastName(lastName);
         employee.getPositions().clear();
         if(positions != null && !positions.isEmpty()){
-            for (String s : positions.split("\\,")) {
-                long pos = Long.parseLong(s);
-                if(pos != 0){
-                    employee.getPositions().add(pos);
+            for (Long position : positions) {
+                if(position != 0){
+                    employee.getPositions().add(position);
                 }
             }
         }

@@ -1466,12 +1466,19 @@ THE SOFTWARE.
 
             //Use custom function if supplied
             if (field.input) {
+                var options = this._getOptionsForField(fieldName, {
+                    record: record,
+                    source: formType,
+                    form: form,
+                    dependedValues: this._createDependedValuesUsingForm(form, field.dependsOn)
+                });
+
                 var $input = $(field.input({
                     value: value,
                     record: record,
                     formType: formType,
                     form: form
-                }));
+                }, options));
 
                 //Add id attribute if does not exists
                 if (!$input.attr('id')) {
