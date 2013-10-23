@@ -1,7 +1,9 @@
 package org.sav.dao;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Restrictions;
 import org.sav.domain.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,14 @@ public class EmployeeDao{
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List<Employee> getAll(){
-        return sessionFactory.getCurrentSession().createCriteria(Employee.class).list();
+    public List<Employee> getAll(long positionId){
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
+
+        if(positionId != 0){
+            criteria.add(Restrictions.eq("positions", positionId));
+        }
+
+        return criteria.list();
     }
 
 

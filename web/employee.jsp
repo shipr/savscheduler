@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Main Page</title>
+    <title>Employee/Position Page</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
-    <link href="/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+    <link href="/jtable/themes/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
     <script src="/jtable/jquery.jtable.js"></script>
 </head>
 <body>

@@ -28,8 +28,8 @@ public class EmployeeService{
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAll")
-    public Map getAll() {
-        return JTableContainer.createRecords(employeeDao.getAll());
+    public Map getAll(@FormParam("positionId")long positionId) {
+        return JTableContainer.createRecords(employeeDao.getAll(positionId));
     }
 
     @POST

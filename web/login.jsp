@@ -18,5 +18,13 @@
     </form>
 </div>
 
+<div>
+    <a href="employee.jsp">Employee/Position Page</a>
+    <br>
+    <a href="week.jsp">Weekly View Page</a>
+    <br>
+
+</div>
+
 </body>
 </html>
