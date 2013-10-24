@@ -39,4 +39,10 @@ public class JTableContainer{
         ret.put("Options", options);
         return ret;
     }
+
+    public static Map<String, Object> createFailed() {
+        Map<String, Object> ret = new HashMap<String, Object>();
+        ret.put("Result", "FAILED");
+        return ret;
+    }
 }

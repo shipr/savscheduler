@@ -68,8 +68,12 @@ public class EmployeeService{
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/delete")
     public Map<String, Object> delete(@FormParam("employeeId")long employeeId){
-        employeeDao.deleteEmployee(employeeId);
-        return JTableContainer.createOK();
+        boolean ret = employeeDao.deleteEmployee(employeeId);
+        if(ret){
+            return JTableContainer.createOK();
+        }else {
+            return JTableContainer.createFailed();
+        }
     }
 
 }

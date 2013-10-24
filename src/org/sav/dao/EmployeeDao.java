@@ -49,9 +49,14 @@ public class EmployeeDao{
         return (Employee)session.get(Employee.class, employeeId);
     }
 
-    public void deleteEmployee(long employeeId) {
-            Session session = sessionFactory.getCurrentSession();
+    public boolean deleteEmployee(long employeeId) {
+        Session session = sessionFactory.getCurrentSession();
         Employee employee = getEmployee(employeeId, session);
-        session.delete(employee);
+        if (employee == null) {
+            session.delete(employee);
+            return true;
+        } else {
+            return false;
         }
+    }
 }
