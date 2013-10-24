@@ -54,9 +54,9 @@
                                 var select = $('<select multiple name="positions" id="show_results" />');
 
                                 containsInArray = function(arrayObj, valueObj){
-                                    if(typeof arrayObj === 'string' || typeof arrayObj === 'number'){
+                                    if(typeof arrayObj === 'string' || typeof arrayObj === 'number' || arrayObj){
                                         return arrayObj == valueObj;
-                                    } else {
+                                    } else if(arrayObj) {
                                         for (var i = 0; i < arrayObj.length; i++) {
                                             if(arrayObj[i] == valueObj){
                                                 return true;

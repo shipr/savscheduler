@@ -51,15 +51,17 @@
             }
             select.append($("<option />").text("").val(0));
             $.post('/restful/Employee/getAll?positionId=' + positionId, function(data, status){
-
+                var str = "";
                 if(status == "success"){
-                    select.append($("<option />").text("").val(0));
                     $.each(data.Records , function(){
-                        select.append($("<option />").text(this.name + " " + this.lastName).val(this.employeeId));
+                        if($.inArray(parseInt(positionId), this.positions) != -1){
+                            select.append($("<option />").text(this.name + " " + this.lastName).val(this.employeeId));
+                        }
                     });
                 } else {
                     alert("failed");
                 }
+                $( "#outputDiv2" ).text(str);
             })
         }
 
@@ -68,30 +70,10 @@
     </div>
 <div>
 
-    <%--<select name="sweets" multiple="multiple" id="sweetsId">--%>
-        <%--<option>Chocolate</option>--%>
-        <%--<option selected="selected">Candy</option>--%>
-        <%--<option>Taffy</option>--%>
-        <%--<option selected="selected">Caramel</option>--%>
-        <%--<option>Fudge</option>--%>
-        <%--<option>Cookie</option>--%>
-    <%--</select>--%>
-    <%--<div id="outputDiv"></div>--%>
-    <%--<script>--%>
-        <%--$( '#sweetsId' )--%>
-                <%--.change(function () {--%>
-                    <%--var str = "";--%>
-                    <%--$( "select option:selected" ).each(function() {--%>
-                        <%--str += $( this ).text() + " ";--%>
-                    <%--});--%>
-                    <%--$( "#outputDiv" ).text( str );--%>
-                <%--})--%>
-                <%--.change();--%>
-    <%--</script>--%>
-
 </div>
 
     <div id="outputDiv"></div>
+    <div id="outputDiv2"></div>
 
 
 </body>
