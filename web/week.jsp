@@ -73,8 +73,41 @@
                     })
                     .change();
             function loadDay(employeeId){
+//                var dayContainer = $('#dayContainer');
+//                dayContainer.empty();
 
+                if(employeeId == 0){
+                    return;
+                } else {
+                    function createPositionsTable() {
+                        $('#dayContainer').jtable({
+                            title: 'Table of Days',
+                            actions: {
+                                listAction: '/restful/Day/getAll',
+                                createAction: '/restful/Day/create',
+                                updateAction: '/restful/Day/update',
+                                deleteAction: '/restful/Day/delete'
+                            },
+                            fields: {
+                                employeeId: {
+                                    key: true,
+                                    list: false
+                                },
+                                visitsDay: {
+                                    title: 'Name',
+                                    width: '100%'
+                                }
+                            }
+                        })
+                    }
+                    createPositionsTable();
+                    $('#dayContainer').jtable('load');
+
+                }
             }
+
+
+
 
         </script>
     </div>
