@@ -23,6 +23,8 @@ sourceSets {
 dependencies {
     providedCompile "javax.servlet:servlet-api:2.5"
 
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.springframework:spring-test:3.2.4.RELEASE'
     compile 'com.sun.jersey:jersey-bundle:1.17.1'
     compile 'com.sun.jersey:jersey-json:1.17.1'
     compile 'com.sun.jersey.contribs:jersey-spring:1.17.1'

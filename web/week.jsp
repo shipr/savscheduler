@@ -4,7 +4,7 @@
     <title>Weekly View Page</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
-    <link href="/jtable/themes/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
+    <link href="./jtable/themes/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
     <script src="/jtable/jquery.jtable.js"></script>
 </head>
 <body>
@@ -73,35 +73,47 @@
                     })
                     .change();
             function loadDay(employeeId){
-//                var dayContainer = $('#dayContainer');
-//                dayContainer.empty();
-
                 if(employeeId == 0){
                     return;
                 } else {
-                    function createPositionsTable() {
-                        $('#dayContainer').jtable({
-                            title: 'Table of Days',
-                            actions: {
-                                listAction: '/restful/Day/getAll',
-                                createAction: '/restful/Day/create',
-                                updateAction: '/restful/Day/update',
-                                deleteAction: '/restful/Day/delete'
+
+                    $('#dayContainer').jtable({
+                        title: 'Table of Days',
+                        actions: {
+                            listAction: '/restful/Day/getAll',
+                            createAction: '/restful/Day/create?employeeId=' + employeeId,
+                            updateAction: '/restful/Day/update',
+                            deleteAction: '/restful/Day/delete'
+                        },
+                        fields: {
+                            employeeId: {
+                                key: true,
+                                list: false
                             },
-                            fields: {
-                                employeeId: {
-                                    key: true,
-                                    list: false
-                                },
-                                visitsDay: {
-                                    title: 'Name',
-                                    width: '100%'
-                                }
+                            visitsDay: {
+                                title: 'visitsDay',
+                                width: '60%',
+                                type: 'date',
+                                key: true,
+                                create: true
+
+                            },
+                            fromTime: {
+                                title: 'From Time',
+                                width: '20%',
+                                type: 'number'
+                            },
+                            tillTime: {
+                                title: 'Till Time',
+                                width: '20%',
+                                type: 'number'
                             }
-                        })
-                    }
-                    createPositionsTable();
-                    $('#dayContainer').jtable('load');
+
+                        }
+                    })
+                    $('#dayContainer').jtable('destroy');
+
+                    $('#dayContainer').jtable('load', {"employeeId": employeeId});
 
                 }
             }

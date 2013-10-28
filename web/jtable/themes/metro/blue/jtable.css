@@ -493,3 +493,12 @@ div.jtable-busy-message {
   background-color: #0b67cd;
   background-position: 8px;
 }
+
+.ui-dialog{
+    background-color: #35a4de;
+    width: 153px;
+}
+
+#ui-datepicker-div{
+    background-color: #dcdcdc;
+}

@@ -28,7 +28,7 @@ public class EmployeeService{
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAll")
-    public Map getAll(@FormParam("positionId")long positionId) {
+    public Map<String, Object> getAll(@FormParam("positionId")long positionId) {
         return JTableContainer.createRecords(employeeDao.getAll(positionId));
     }
 

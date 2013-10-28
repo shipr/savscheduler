@@ -42,7 +42,13 @@ public class JTableContainer{
 
     public static Map<String, Object> createFailed() {
         Map<String, Object> ret = new HashMap<String, Object>();
-        ret.put("Result", "FAILED");
+        ret.put("Result", "ERROR");
+        return ret;
+    }
+
+    public static Map<String, Object> createFailed(String message) {
+        Map<String, Object> ret = createFailed();
+        ret.put("Message", message);
         return ret;
     }
 }
